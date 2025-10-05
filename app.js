@@ -1,4 +1,3 @@
-// defined-in-js.js
 
 export class Cat {
     constructor() {
