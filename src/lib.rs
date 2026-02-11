@@ -18,6 +18,8 @@ extern "C" {
     #[wasm_bindgen(method)]
     fn render(this: &Cat) -> String;
 
+    fn hello() -> String;
+
 }
 
 #[wasm_bindgen]
@@ -28,7 +30,6 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn greet() {
-
     let window = web_sys::window().expect("no global `window` exists");
     let document = window.document().expect("should have a document on window");
     let body = document.body().expect("document should have a body");
@@ -67,13 +68,15 @@ pub fn greet() {
 
     log(&cat_image_el.node_name().as_str());
 
+    log(hello().as_str());
+
     // let cat_image = img
     //     .dyn_into::<web_sys::HtmlCanvasElement>()
     //     .map_err(|_| ())
     //     .unwrap();
 
     match context.draw_image_with_html_image_element(&img, 10.0, 10.0) {
-        Ok(x) => {},
+        Ok(x) => {}
         Err(err) => log(err.as_string().unwrap().as_str()),
     };
 
@@ -83,6 +86,4 @@ pub fn greet() {
     murz.set_age(5);
 
     log(&murz.render());
-
-
 }

@@ -16,3 +16,7 @@ export class Cat {
         return `Cat: ${this.age}`;
     }
 }
+
+export function hello() {
+    return "Hello!";
+}
