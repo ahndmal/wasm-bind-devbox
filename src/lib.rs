@@ -1,3 +1,4 @@
+use chrono::prelude::*;
 use std::f64;
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlImageElement;
@@ -26,6 +27,13 @@ extern "C" {
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
     fn log(s: &str);
+}
+
+#[wasm_bindgen]
+pub fn get_date() -> String {
+    let utc: DateTime<Utc> = Utc::now();
+    let local: DateTime<Local> = Local::now();
+    utc.to_string()
 }
 
 #[wasm_bindgen]
@@ -68,8 +76,6 @@ pub fn greet() {
 
     log(&cat_image_el.node_name().as_str());
 
-    log(hello().as_str());
-
     // let cat_image = img
     //     .dyn_into::<web_sys::HtmlCanvasElement>()
     //     .map_err(|_| ())
@@ -86,4 +92,6 @@ pub fn greet() {
     murz.set_age(5);
 
     log(&murz.render());
+
+    log(hello().as_str());
 }
